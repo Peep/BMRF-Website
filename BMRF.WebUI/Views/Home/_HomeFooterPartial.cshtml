@@ -1,0 +1,102 @@
+﻿<footer class="clearfix">
+    <div class="ink-grid">
+        <div class="column-group bottom-space">
+
+            <div class="all-25">
+                <ul class="unstyled half-vertical-space">
+                    <li>
+                        <a href="//twitter.com/bmrfservers" target="_blank" class="twitter-share-button share-icon"><i class="fa fa-twitter fa-1x"></i></a>
+                        <a href="" target="_blank" class="google-share-button share-icon"><i class="fa fa-google-plus fa-1x"></i></a>
+                        <a href="" target="_blank" class="steam-share-button share-icon"><i class="fa fa-steam fa-1x"></i></a>
+                    </li>
+                    <li class="active">contact</li>
+                    <li>email: <em>admin@bmrf.me</em></li>
+                    <li>irc: <em>irc.synirc.net#bmrf</em></li>
+                </ul>
+            </div>
+
+            <div class="all-20">
+                <ul class="unstyled half-vertical-space">
+                    <li class="active">popular</li>
+                    <li><a href="https://community.bmrf.me">community</a></li>
+                    <li>@Html.ActionLink("articles", "Articles", "Home")</li>
+                    <li>@Html.ActionLink("store", "Store", "Home")</li>
+                    <li>@Html.ActionLink("rules", "Rules", "Home")</li>
+                    <li>@Html.ActionLink("players", "Players", "Home")</li>
+                </ul>
+            </div>
+
+            <div class="all-20">
+                <ul class="unstyled half-vertical-space">
+                    <li class="active">about</li>
+                    <li><a href="https://bmrf.me/article/privacy-policy">privacy policy</a></li>
+                    <li><a href="#">staff list</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+
+            <div class="all-20">
+                <ul class="unstyled half-vertical-space">
+                    <li class="active">contribute</li>
+                    <li><a href="mailto:jamieroling@bmrf.me">write for us</a></li>
+                    <li><a href="mailto:admin@bmrf.me">report security hole</a></li>
+                    <li><a href="mailto:jamieroling@bmrf.me">send us a tip</a></li>
+                    <li><a href="mailto:admin@bmrf.me">ask a question</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <p class="note">© 2014 BMRF All rights reserved.</p>
+    </div>
+</footer>
+<script>
+    Ink.requireModules(['Ink.UI.Carousel_1'], function (InkCarousel) {
+        new InkCarousel('#car1', { pagination: '#p1' });
+    });
+    Ink.requireModules(['Ink.UI.Sticky_1'], function (Sticky) {
+        new Sticky('.my-sticky')
+    });
+</script>
+<script src="@Url.Content("~/Content/js/jquery.circliful.min.js")"></script>
+<script>
+    $(document).ready(function () {
+        $('#myStathalf1').circliful();
+        $('#myStathalf2').circliful();
+        $('#myStathalf3').circliful();
+        $('#myStathalf4').circliful();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+    
+        $('[title]').qtip({
+            style: {
+                classes: 'qtip-tipsy qtip-rounded qtip-shadow'
+            },
+            position: {
+                my: 'top center',
+                at: 'bottom center'
+            }
+        });
+        
+        $('.toggle-btn').click(function () {
+            var toggleType = $(this).data('toggle');
+
+            $('.toggle-box').each(function () {
+                if ($(this).data('toggle') !== toggleType && $(this).css('display') !== 'none') {
+                    $(this).toggle("slow", function () {
+                        // Animation complete.
+                    });
+                }
+            });
+
+            $('.toggle-box[data-toggle=' + toggleType + ']').each(function () {
+
+                $(this).toggle("slow", function () {
+                    // Animation complete.
+                });
+            });
+        });
+    });
+</script>

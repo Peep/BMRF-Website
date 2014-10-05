@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>@ViewBag.Title</title>
+  <link href="@Url.Content("~/Content/Styles/app.min.css")" rel="stylesheet" type="text/css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/js/foundation.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js"></script>
+  <script src="/Content/Iconic/js/iconic.min.js"></script>
+  <script src="@Url.Content("~/Content/Scripts/Chart.min.js")"></script>
+</head>
+<body>
+  <section class="app">
+    <section class="main-content">
+      @Html.Partial("_AdminNavPartial")
+      <header class="main-header">
+        @Html.Partial("_AdminHeaderPartial")
+      </header>
+      <section class="view-content">
+        @RenderBody()
+      </section>
+    </section>
+    <nav class="sidebar-nav">
+      @Html.Partial("_AdminSidebarPartial")
+    </nav>
+    <section class="online-players">
+      @Html.Partial("_AdminOnlinePlayersPartial")
+    </section>
+  </section>
+  @Html.Partial("_AdminScriptsPartial")
+</body>
+</html>

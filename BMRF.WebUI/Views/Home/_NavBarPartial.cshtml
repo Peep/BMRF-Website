@@ -1,0 +1,72 @@
+﻿@model BMRF.Domain.Login.ForumUser
+
+<div class="login-wrapper toggle-box" data-toggle="login" style="display:none;">
+    <div class="login-box column-group">
+        <div class="all-100">
+            <a href="#"><span class="toggle-btn login-close" data-toggle="login" style="float:right;">close</span></a>
+        </div>
+
+        <div class="all-100">
+            <script type="text/javascript" src="https://community.bmrf.me/clientscript/vbulletin_md5.js?v=423b1"></script>
+            <form id="navbar-loginform" method="post" action="//community.bmrf.me/login.php?do=login" onsubmit="md5hash(vb_login_password, vb_login_md5password, vb_login_md5password_utf, 0)">
+                <fieldset>
+                    <label for="navbar_username">username</label>
+                    <input type="text" class="textbox default-value" name="vb_login_username" id="navbar_username" size="10" accesskey="u" tabindex="101" placeholder="" />
+
+                    <label for="navbar_password" style="display:inline-block;width:40%;">password </label><a href="https://community.bmrf.me/login.php?do=lostpw" style="display:inline-block;width:60%;font-size:70%;text-align:right;">forgot password?</a>
+                    <input type="password" class="textbox" tabindex="102" name="vb_login_password" id="navbar_password" size="10" />
+                    <input type="text" class="textbox default-value" tabindex="102" name="vb_login_password_hint" id="navbar_password_hint" size="10" placeholder="password" style="display:none;" />
+                    
+
+                    <label for="cb_cookieuser_navbar"><input type="checkbox" name="cookieuser" value="1" id="cb_cookieuser_navbar" class="cb_cookieuser_navbar" accesskey="c" tabindex="103" /> remember me</label>
+
+                    <input type="submit" class="loginbutton" tabindex="104" value="Log in" title="Enter your username and password in the boxes provided to login, or click the 'register' button to create a profile for yourself." accesskey="s" style="display:block;"/>
+     
+                    <input type="hidden" name="s" value="" />
+                    <input type="hidden" name="securitytoken" value="guest" />
+                    <input type="hidden" name="do" value="login" />
+                    <input type="hidden" name="vb_login_md5password" />
+                    <input type="hidden" name="vb_login_md5password_utf" />
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!-- login box -->
+<!--navigation bar -->
+<header class="clearfix my-sticky ink-sticky clearfix">
+    <div class="ink-grid clearfix">
+        <div class="column-group clearfix">
+            <div class="all-60">
+                <nav>
+                    <ul class="main-nav unstyled clearfix">
+                        <li>@Html.ActionLink("home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("articles", "Articles", "Home")</li>
+                        <li>@Html.ActionLink("players", "Players", "Home")</li>
+                        <li><a href="https://community.bmrf.me">community</a></li>
+                        <li>@Html.ActionLink("servers", "Servers", "Home")</li>
+                        <li>@Html.ActionLink("rules", "Rules", "Home")</li>
+                        <li><a href="https://kiwiirc.com/client/irc.synirc.net/bmrf" onclick="javascript:void window.open('https://kiwiirc.com/client/irc.synirc.net/bmrf','1410706906852','width=1100,height=800,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=50%,top=50%');return false;">support</a></li>
+                        <li>@Html.ActionLink("store", "Store", "Home")</li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="all-40">
+                @if (Model == null)
+                {
+                    <nav>
+                        <ul class="main-nav side-nav unstyled clearfix">
+                            <li><a href="#" class="toggle-btn" data-toggle="login">login</a></li>
+                            <li></li>
+                        </ul>
+                    </nav>
+                }
+                else
+                {
+                    <span class="player-tab" style="text-align:right;display:block;font-size:0.85em;position:relative;top:11px;color:#FFBA2B!important;"><span style="color:#ccc;">welcome,</span> <a href="https://community.bmrf.me/member.php?@Model.UserId">@Model.Name</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://community.bmrf.me/usercp.php">settings</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://bmrf.me/home/logout">log out</a></span>
+                }
+            </div>
+        </div>
+    </div>
+</header>

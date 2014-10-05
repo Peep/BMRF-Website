@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewBag.Title = "bmrf.me | players";
+    ViewBag.Author = "Jamie Roling, Corey Chase";}
+
+        <!-- content -->
+        <div class="ink-grid"> 
+          <div class="column-group">
+
+            <div class="all-33">  
+              <form class="article-index-form">
+                  <input type="text" id="article-index-search" name="search" placeholder="&nbsp;search players"/>
+              </form>
+            </div>
+
+            <div class="all-66 align-right">
+              <p style="margin-top:6px">sort:  
+                <span class="sort-btn" data-sort="score_desc">score</span>
+                <span class="sort-btn" data-sort="banditkills_desc">bandit</span>
+                <span class="sort-btn" data-sort="humankills_desc">human</span>
+                <span class="sort-btn" data-sort="zombiekills_desc">zombie</span>
+                <span class="sort-btn" data-sort="deaths_desc">deaths</span>
+                <span class="sort-btn" data-sort="distance_desc">distance</span>
+                <span class="sort-btn" data-sort="tplayed_desc">time played</span>
+              </p>
+            </div>
+
+          </div>
+          
+          <div class="column-group clearfix top-space half-bottom-space featured">
+
+            <div class="all-100">
+              <!-- index header -->
+              <div class="column-group">
+
+                <div class="all-100">
+                  <div class="column-group player-index-header half-top-space">
+                    <div class="all-5">
+                    </div>
+                    <div class="all-10">
+                      <p>profile</p>
+                    </div>
+                    <div class="all-15">
+                      <p>name</p>
+                    </div>
+                    <div class="all-10">
+                      <p>score</p>
+                    </div>
+                    <div class="all-10">
+                      <p>bandit</p>
+                    </div>
+                    <div class="all-10">
+                      <p>human</p>
+                    </div>
+                    <div class="all-10">
+                      <p>zombie</p>
+                    </div>
+                    <div class="all-10">
+                      <p>deaths</p>
+                    </div>
+                    <div class="all-10">
+                      <p>distance</p>
+                    </div>
+                    <div class="all-10">
+                      <p>time played</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <!-- end index header -->
+
+              <div class="column-group player-inventory player-index-list">
+
+              <!-- Behold! JS will fill ye landlubberin' glut o' beasts! -->
+
+              </div>
+
+            </div>
+
+          </div>
+          <div style="width:100%;text-align:center;font-size:70%;margin-bottom:-40px;text-shadow: 0px 0px 6px #000;"><p class="generated-info"></p></div> 
+
+          <i class="article-index-load fa fa-angle-double-left fa-4x bottom-space push-left" style="margin-left:0%;"></i><i class="article-index-load fa fa-angle-double-right fa-4x bottom-space push-right" style="margin-left:0%;"></i>
+
+        </div>
+
+        <script>
+        $(document).ready(function () {
+          var hostdomain = window.location.protocol + '//' + window.location.host;
+
+          //paging variables set
+          $(".fa-angle-double-left").fadeOut();
+          var searchPage = 1;
+          var searchActive = false;
+          var searchQuery;
+          var sortActive = false;
+          var sortQuery;
+          var currentpage;
+          var totalpage;
+          var generatedIn;
+          var totalPlayers;
+
+          //search function
+          function playerSearch(var1, var2, var3, var4) {
+            var requestURL;
+
+            if (typeof var1 === 'undefined') {
+              requestURL = hostdomain +'/api/players';
+            } else if (typeof var2 === 'undefined') {
+              requestURL = hostdomain +'/api/players?' + var1 + '';
+            } else if (typeof var3 === 'undefined') {
+              requestURL = hostdomain +'/api/players?' + var1 + '&' + var2 + '';
+            } else if (typeof var4 === 'undefined') {
+              requestURL = hostdomain +'/api/players?' + var1 + '&' + var2 + '&' + var3 + '';
+            } else {
+              requestURL = hostdomain +'/api/players?' + var1 + '&' + var2 + '&' + var3 + '&' + var4 + '';
+            }
+
+            $( ".player-index-list" ).empty();
+            $( ".generated-info" ).empty();
+
+            $.getJSON(requestURL, function (data) {
+                      for (var i in data.PlayerIndex) {
+                        currentpage  = data.CurrentPage;
+                        totalpage    = data.PageCount;
+                        generatedIn  = data.GeneratedIn.toFixed(4);
+                        totalPlayers = data.TotalPlayers;
+
+                        var vuid     = data.PlayerIndex[i].VUID;
+                        var profile  = data.PlayerIndex[i].ForumUsername;
+                        var name     = data.PlayerIndex[i].Name;
+                        var score    = data.PlayerIndex[i].Score;
+                        var kills_b  = data.PlayerIndex[i].KillsB;
+                        var kills_h  = data.PlayerIndex[i].KillsH;
+                        var kills_z  = data.PlayerIndex[i].KillsZ;
+                        var deaths   = data.PlayerIndex[i].Deaths;
+                        var distance = (data.PlayerIndex[i].DistanceMeter / 1000).toFixed(0);
+                        var playtime = (data.PlayerIndex[i].Playtime / 60).toFixed(1);
+
+                        $('.player-index-list').append('<div class="all-100 player-index-item"><div class="column-group"><div class="all-5"><img src="https://bmrf.me/home/renderforumavatar?vuid=' + vuid + '" alt="' + profile + '" class=""></div><div class="all-10"><a href="' + hostdomain + '/profile/' + profile + '"><p style="font-weight:bold;">' + profile + '</p></a></div><div class="all-15"><p>' + name + '</p></div><div class="all-10"><p>' + score + '</p></div><div class="all-10"><p>' + kills_b + '</p></div><div class="all-10"><p>' + kills_h + '</p></div><div class="all-10"><p>' + kills_z + '</p></div><div class="all-10"><p>' + deaths + '</p></div><div class="all-10"><p>' + distance + ' km</p></div><div class="all-10"><p>' + playtime + ' hours</p></div></div></div>');
+
+                      }
+            }).fail(function () {
+                      $('.player-index-list').append('<h4>Failed to load players</h4>');
+            }).done(function () {
+                      //search info
+                      $('.generated-info').append('search took ' + generatedIn + ' for ' + totalPlayers + ' results.');
+                      //buttonfades
+                      if (currentpage === totalpage) {
+                        $(".fa-angle-double-right").fadeOut();
+                      } else {
+                        $(".fa-angle-double-right").fadeIn();
+                      }
+                      if (totalpage === 1) {
+                        $(".fa-angle-double-right").fadeOut();
+                      }
+                      if (currentpage === 1) {
+                        $(".fa-angle-double-left").fadeOut();
+                      } else {
+                        $(".fa-angle-double-left").fadeIn();
+                      }
+            });
+
+          }
+
+            //load default page
+          var defaultLoad = playerSearch('pagesize=10', 'searchString=@ViewBag.SearchQuery');
+
+          //next page
+          $(".fa-angle-double-right").click(function () {
+            var getNext = currentpage + 1;
+
+            //check state
+            if (searchActive) {
+              var nextPage = playerSearch('pagesize=10',searchQuery,'page=' + getNext);
+            } else if (sortActive) {
+              var nextPage = playerSearch('pagesize=10',sortQuery,'page=' + getNext);
+            } else {
+              var nextPage = playerSearch('pagesize=10','page=' + getNext);
+            }
+          });
+
+          //previous page
+          $(".fa-angle-double-left").click(function () {
+            var getPrev = currentpage - 1;
+
+            //check state
+            if (searchActive) {
+              var prevPage = playerSearch('pagesize=10',searchQuery,'page=' + getPrev);
+            } else if (sortActive) {
+              var prevPage = playerSearch('pagesize=10',sortQuery,'page=' + getPrev);
+            } else {
+              var prevPage = playerSearch('pagesize=10','page=' + getPrev);
+            }
+          });
+
+          //search trigger
+          $(window).keydown(function(event){
+              if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+              }
+          });
+
+          //search initiate
+          $("#article-index-search").keydown(function(e) {
+            if(e.keyCode == 13){
+                sortActive = false;
+                searchActive = true;
+                //save search query
+                searchQuery = 'searchString=' + $("#article-index-search").val();
+                //execute search function
+                var searchResult = playerSearch( 'pagesize=10', searchQuery );
+            }
+          });
+
+          //sort initiate
+          $(".sort-btn").click(function(e) {
+                //activate sorting state
+                sortActive = true;
+                //save search query
+                var dataSort = $(this).data('sort');
+                sortQuery = 'sortOrder=' + dataSort;
+                //execute search function
+                if (searchActive) {
+                  var sortResult = playerSearch( 'pagesize=10', searchQuery, sortQuery );
+                } else {
+                  var sortResult = playerSearch( 'pagesize=10', sortQuery );
+                }
+          });
+
+        });
+        </script>
+
+        <!-- content end -->

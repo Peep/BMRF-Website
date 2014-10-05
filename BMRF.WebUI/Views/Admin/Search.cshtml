@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BMRF.Domain.DataStructures.SearchResult>
+
+@{
+    ViewBag.Title = "BMRF.ME | Control";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var searchResults = Model;
+}
+
+<body>
+  <div id="content">
+    <div class="page-full-width clearfix">
+      <div class="side-menu fl">
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 2</a></li>
+          <li><a href="#">Link 3</a></li>
+        </ul>
+      </div>
+       
+      <div class="side-content fr">
+
+        <div class="content-module">
+          <div class="content-module-heading clearfix">
+            <h3 class="fl">Search Results</h3>
+          </div>
+          <div class="content-module-main clearfix">
+            <ul class="search-results">
+              @foreach (var result in searchResults)
+              {
+                <li class="search-result">
+                  <a href="javascript:;" class="search-result-clickable">
+                    <h4 class="search-result-title">@result.Title</h4>
+                    <span class="search-result-description">@result.Description</span>
+                  </a>
+                </li>
+
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End page-full-width -->
+  </div><!-- end content-->
+</body>
+

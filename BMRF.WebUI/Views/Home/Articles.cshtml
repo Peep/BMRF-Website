@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "bmrf.me | articles";
+    ViewBag.Author = "Jamie Roling, Corey Chase";
+}
+
+<div class="ink-grid">
+    <form class="article-index-form">
+        <input type="text" id="article-index-search" name="search" placeholder="&nbsp;search articles"/>
+    </form>
+    <div class="column-group clearfix bottom-space top-space article-index half-gutters">
+
+    </div>
+    <i class="article-index-load fa fa-angle-double-down fa-4x quarter-bottom-space"></i>
+</div>
+<script>
+
+    $(document).ready(function () {
+        var hostdomain = window.location.protocol + '//' + window.location.host;
+
+        //search variables
+        var searchActive = false;
+        var searchQuery;
+        var searchPosts = 'get_search_results?';
+        var getPosts    = 'get_posts?';
+        var totalpage;
+
+        //search function
+        function articleSearch(var1, var2, var3, var4) {
+            var requestURL;
+            console.log(requestURL);
+            if (typeof var1 === 'undefined') {
+              requestURL = hostdomain +'/api/';
+            } else if (typeof var2 === 'undefined') {
+              requestURL = hostdomain +'/api/' + var1 + '';
+            } else if (typeof var3 === 'undefined') {
+              requestURL = hostdomain +'/api/' + var1 + '' + var2 + '';
+            } else if (typeof var4 === 'undefined') {
+              requestURL = hostdomain +'/api/' + var1 + '' + var2 + '&' + var3 + '';
+            } else {
+              requestURL = hostdomain +'/api/' + var1 + '' + var2 + '&' + var3 + '&' + var4 + '';
+            }
+            console.log(requestURL);
+
+            $( ".player-index-list" ).empty();
+
+            $.getJSON(requestURL, function (data) {
+                for (var i in data.posts) {
+                    totalpage    = data.count_total;
+                    console.log(totalpage);
+
+                    $('.article-index').append('<div class="all-50 medium-100 small-100 tiny-100"><div class="column-group clearfix featured article-index-item"><div class="all-100 small-100 tiny-100 featured article-index-thumb" style="background-image:url(\'' + data.posts[i].thumbnail_images.full.url + '\');" onclick="window.location = \'../article/' + data.posts[i].slug + '\'"></div><div class="all-100 small-100 tiny-100"><h3><a href="../article/' + data.posts[i].slug + '">' + data.posts[i].title + '</a></h3><p class="article-info article-index-info"><span>' + data.posts[i].categories[0].title + '</span> ' + data.posts[i].date + ' by ' + data.posts[i].author.name + '</p><div class="article-index-excerpt">' + data.posts[i].excerpt + '</div><p class="article-index-excerpt"><a href="../article/' + data.posts[i].slug + '">read more</a></p></div></div></div>');
+                }
+            }).fail(function () {
+                console.log( "SHIT BROKE OH GOD" );    
+                $('.article-index').append('<h4>Failed to load players</h4>');
+            }).done(function() {
+                console.log( 'JSON GET request success' );
+            });
+
+        }
+        //new page load
+        var defaultLoad = articleSearch(getPosts, 'page=1');
+
+        //extra article loader
+        var page = 2;
+
+        $(".article-index-load").click(function () {
+            var moreLoad = articleSearch(getPosts, 'page=' + page);
+            page++;
+        });
+        
+        //search function
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+        });
+
+        var search = 1;
+
+        $("#article-index-search").keydown(function(e) {
+          if(e.keyCode == 13){
+            $( ".article-index" ).empty();
+                searchActive = true;
+                //store search query
+                searchQuery = 'search=' + $("#article-index-search").val();
+                var searchLoad = articleSearch(searchPosts, searchQuery,  'page=' + search);
+          }
+        });
+    });
+</script>

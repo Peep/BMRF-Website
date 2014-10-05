@@ -1,0 +1,281 @@
+﻿@model BMRF.Domain.ProfileModels.ProfileViewModel
+
+@{
+    ViewBag.Title = "bmrf.me | " + @Model.Player.ForumUsername;
+    ViewBag.Author = "Jamie Roling, Corey Chase";
+ }
+
+<!-- content -->
+<div class="ink-grid">
+
+    <div class="column-group">
+
+        <div class="all-33">  
+            <form class="article-index-form">
+                <input type="text" id="article-index-search" name="search" placeholder="&nbsp;search players"/>
+            </form>
+        </div>
+
+        <div class="all-66 align-right">
+
+        </div>
+
+    </div>
+
+    <div class=" clearfix player-profile featured double-bottom-space top-space">
+
+        <div class="column-group" style="background:url('@Url.Content("~/Content/img/player-profile-bg.jpg")');border-bottom:1px solid #000;">
+            <div class="all-50">
+                <img class="player-rank-avatar" src="https://bmrf.me/home/renderforumavatar?vuid=@Model.Player.VUID"/>
+                <h2 class="player-profile-info">@Model.Player.ForumUsername<br /><span>@Model.Player.Name</span></h2>
+            </div>
+            <div class="all-50">
+                <img src="@Url.Content("~/Content/img/" + (Model.LastCharacter.Server == "dayzero" ? "dayzero.png" : "overpoch.png"))" style="width:250px;float:right;margin-right:1em;margin-top:0.5em;"/>
+            </div>
+            <div class="all-10">
+            </div>
+
+            <!-- equip column -->
+            <div class="all-15">
+                <h3>equips</h3>
+                <div class="column-group">
+            
+                    <!-- stat block -->
+                    @if (Model.LastCharacter.Inventory.Optics.Count != 0)
+                    {
+                        foreach (var optic in Model.LastCharacter.Inventory.Optics)
+                        {
+                            <div class="all-100">
+                                <div class="player-equipped-box clearfix" style="">
+                                    <div class="player-inventory player-inventory" style="display: inline-block;">
+                                        <img src="@Url.Content("~/Content/img/item-icons/" + optic.ImageName)" alt="rank 1" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="all-100">
+                            <div class="player-equipped-box clearfix" style="">
+                                <div class="player-inventory player-inventory" style="display: inline-block;">
+                                    <img src="@Url.Content("~/Content/img/item-icons/empty.png")" alt="rank 1" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="all-100">
+                            <div class="player-equipped-box clearfix" style="">
+                                <div class="player-inventory player-inventory" style="display: inline-block;">
+                                    <img src="@Url.Content("~/Content/img/item-icons/empty.png")" alt="rank 1" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- stat block -->
+                    @if (Model.LastCharacter.Inventory.Backpack != null)
+                    {
+                        <div class="all-100">
+                            <div class="player-equipped-box clearfix" style="">
+                                <div class="player-inventory player-inventory" style="display: inline-block;">
+                                    <img src="@Url.Content("~/Content/img/item-icons/" + @Model.LastCharacter.Inventory.Backpack.ImageName)" alt="rank 1" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="all-100">
+                            <div class="player-equipped-box clearfix" style="">
+                                <div class="player-inventory player-inventory" style="display: inline-block;">
+                                    <img src="@Url.Content("~/Content/img/item-icons/unknown.png")" alt="rank 1" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- stat block -->
+                </div>
+            </div>
+
+            <!-- equip column end -->
+            <!-- portrait column -->
+            <div class="all-30">
+                <h3></h3>
+                <img src="@Url.Content("~/Content/img/player-avatars/dude-filler3.png")" class="" />
+            </div>
+            <!-- portrait column end -->
+        
+            <!-- inventory column -->
+            <div class="all-35">
+                <h3>weapons</h3>
+                <div class="column-group player-inventory">
+                    <!-- item block -->
+                    @if (Model.LastCharacter.Inventory.PrimaryWeapon != null)
+                    {
+                        <div class="all-100">
+                            <div class="player-item">
+                                <div class="column-group quarter-gutters">
+                                    <div class="all-30">
+                                        <img src="@Url.Content("~/Content/img/item-icons/" + @Model.LastCharacter.Inventory.PrimaryWeapon.ImageName)" style="width: 90%; margin: 0 5%;margin-top:15px;" />
+                                    </div>
+                                    <div class="all-70">
+                                        <h5>@Model.LastCharacter.Inventory.PrimaryWeapon.Name<span> @Model.LastCharacter.Inventory.PrimaryWeapon.Subtitle</span></h5>
+                                        <p>@Model.LastCharacter.Inventory.PrimaryWeapon.Description</p>
+                                    </div>        
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="all-100">
+                            <div class="player-item">
+                                <div class="column-group quarter-gutters">
+                                    <div class="all-30">
+                                        <img src="@Url.Content("~/Content/img/item-icons/unknown.png")" style="width: 90%; margin: 0 5%;" />
+                                    </div>
+                                    <div class="all-70">
+                                        <h5>Primary Weapon Not Found<span> </span></h5>
+                                        <p>Either this character doesn't have a primary weapon, or the weapon doesn't exist in our database.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- item block -->
+                    @if (Model.LastCharacter.Inventory.SecondaryWeapon != null)
+                    {
+                        <div class="all-100">
+                            <div class="player-item">
+                                <div class="column-group quarter-gutters">
+                                    <div class="all-30">
+                                        <img src="@Url.Content("~/Content/img/item-icons/" + @Model.LastCharacter.Inventory.SecondaryWeapon.ImageName)" style="width: 90%; margin: 0 5%;" />
+                                    </div>
+                                    
+                                    <div class="all-70">
+                                        <h5>@Model.LastCharacter.Inventory.SecondaryWeapon.Name <span>@Model.LastCharacter.Inventory.SecondaryWeapon.Subtitle</span></h5>
+                                        <p>@Model.LastCharacter.Inventory.SecondaryWeapon.Description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="all-100">
+                            <div class="player-item">
+                                <div class="column-group quarter-gutters">
+                                    <div class="all-30">
+                                        <img src="@Url.Content("~/Content/img/item-icons/unknown.png")" style="width: 90%; margin: 0 5%;" />
+                                    </div>
+                                    <div class="all-70">
+                                        <h5>Secondary Weapon Not Found <span> </span></h5>
+                                        <p>Either this character doesn't have a secondary weapon, or the weapon doesn't exist in our database.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- inventory column end -->
+        </div>
+
+        <div class="column-group">
+
+            <div class="all-50 align-center player-profile-stat-box">
+                <div class="column-group half-bottom-space half-top-space">
+                    <!-- stat block -->
+                    <div class="all-50 player-profile-stat">
+                        <p>@Model.Player.KillsH</p>
+                        <span>human kills</span>
+                    </div>
+                    <!-- stat block -->
+                    <div class="all-50 player-profile-stat">
+                        <p>@Model.Player.KillsB</p>
+                        <span>bandit kills</span>
+                    </div>
+                    <!-- stat block -->
+                    <div class="all-50 player-profile-stat">
+                        <p>@Model.Player.KillsZ</p>
+                        <span>zombie kills</span>
+                    </div>
+                    <!-- stat block -->
+                    <div class="all-50 player-profile-stat">
+                        <p>@Model.Player.Deaths</p>
+                        <span>deaths</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-50  align-center player-profile-stat-box">
+                <div class="column-group half-bottom-space half-top-space">
+                    <!-- stat block -->
+                    <div class="all-50 player-profile-stat">
+                        <p class="total-life"></p>
+                        <span>time played</span>
+                    </div>
+                    <!-- stat block -->
+                    <div class="all-50 player-profile-stat">
+                        <p class="avg-life"></p>
+                        <span>average life</span>
+                    </div>
+                    <!-- stat block -->
+                    <div class="all-50 player-profile-stat">
+                        <p class="total-distance"></p>
+                        <span>total travel</span>
+                    </div>
+                    <!-- stat block -->
+                    <div class="all-50 player-profile-stat">
+                        <p class="avg-distance"></p>
+                        <span>average travel</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+$(document).ready(function () {
+    var hostdomain = window.location.protocol + '//' + window.location.host;
+
+    if (@Model.Player.Playtime > 60) {
+        var survMin = @Model.Player.Playtime % 60;
+        var survHour = (@Model.Player.Playtime - survMin) / 60;
+        $('.total-life').append(survHour + ' hr. ' + survMin + ' min.');
+    } else {
+        $('.total-life').append(@Model.Player.Playtime + ' min.');
+    }
+
+    var survLife =  @Model.Player.Playtime / (@Model.Player.Deaths + 1);
+    $('.avg-life').append(survLife.toFixed(0) + ' min.');
+
+    var roundDistance = function (distance) {
+        var distanceKm = distance / 1000;
+        return distanceKm.toFixed(1);
+    }
+    
+    $('.avg-distance').append(roundDistance(@Model.Player.DistanceMeterAvg) + 'km');
+    $('.total-distance').append(roundDistance(@Model.Player.DistanceMeter)+ 'km');
+
+    //search trigger
+    $(window).keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+      }
+    });
+
+    //search initiate
+    $("#article-index-search").keydown(function(e) {
+        if(e.keyCode == 13){
+            window.location.href = hostdomain + '/players/search/' + $("#article-index-search").val();
+        }
+    });
+
+});
+</script>
+            <!-- content end -->
+        

@@ -1,0 +1,207 @@
+﻿@import 'bourbon/bourbon';
+@import 'foundation/normalize';
+@import 'foundation/foundation';
+@import 'foundation/foundation.mvc.scss';
+@import 'custom-foundation';
+@import 'admin';
+
+@mixin sidebar {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(black, .25);
+  @include flex(0 0 10vw);
+
+  header {
+    padding: 1rem;
+
+    h3 {
+      color: #fff;
+      font-size: 1.25em;
+      margin: 0;
+    }
+  }
+}
+
+html, body {
+  background: #ddd;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.main-nav {
+  .iconic {
+    $color: #f0f0f0;
+    fill: $color;
+    stroke: $color;
+
+    &.attention-needed {
+      fill: $primary-color;
+    }
+
+    &.small {
+      $color: #303030;
+      $size: 10px;
+      height: $size;
+      width: $size;
+      fill: $color;
+      stroke: $color;
+    }
+  }
+}
+
+.app {
+  max-width: 100vw;
+  margin: 0 auto;
+  @include display(flex);
+  padding: 0;
+  @include flex-direction(row);
+  min-height: 100vh;
+}
+
+.main-content {
+  @include size(100vw auto);
+  @include order(2);
+  padding: 0 !important;
+}
+
+.view-content {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sidebar-nav {
+  background: #222;
+  @include sidebar;
+  @include order(1);
+
+  .side-nav {
+    li {
+      a {
+        font-size: 1.1em;
+      }
+    }
+  }
+
+}
+
+input[name="search"] {
+  @include size(40vw 2em);
+  font-size: 1.25rem;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  color: #f0f0f0;
+  padding: 0;
+  margin: 0 0 0 2rem;
+
+  &:active, &:focus {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.online-players {
+  background: #f8f8f8;
+  text-align: right;
+
+  @include sidebar;
+  @include order(3);
+
+  header {
+    background: #222;
+  }
+
+  .online-players-list {
+    list-style-type: none;
+    margin: 0;
+    text-align: right;
+  }
+
+  .online-player {
+    a {
+      display: block;
+      padding: .5rem 1rem;
+      text-shadow: 0 1px 0 rgba(white, 1);
+
+      @include transition(140ms ease background);
+
+      &:hover {
+        background: #fff;
+      }
+    }
+    &:nth-child(even) {
+      background: #eee;
+    }
+  }
+}
+
+.main-header {
+  padding: 0 2rem;
+  margin: 2rem 0;
+
+  h3 {
+    font-size: 2.25em;
+  }
+}
+
+.card-container {
+  float: left;
+  padding: 0 1rem;
+  margin: 0 0 1rem 0;
+  
+  @media #{$small-up} {
+    width: 77.33vw;
+  }
+
+  @media #{$large-up} {
+    width: 25vw;
+  }
+}
+
+.card {
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 3px rgba(black, .1);
+  border-top: 2px solid $primary-color;
+  position: relative;
+  top: 0;
+  @include transition(140ms ease all);
+
+  &.hoverable {
+    &:hover {
+      top: -8px;
+      box-shadow: 0 8px 15px rgba(black, .25);
+    }
+  }
+
+  &:last-child {
+    margin: 0 0 1rem 0;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      a {
+        display: block;
+        padding: .75rem 0;
+        border-bottom: 1px dotted rgba($primary-color, 1);
+
+        @include transition(140ms ease all);
+
+        &:hover {
+          color: white;
+          text-shadow: 0 1px 2px rgba(black, .5);
+          background: rgba($primary-color, .9);
+          padding: .75rem 0 .75rem 1.25rem;
+        }
+      }
+    }
+  }
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+}

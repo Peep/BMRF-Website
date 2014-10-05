@@ -1,0 +1,111 @@
+﻿@model BMRF.Domain.DataStructures.Article
+
+@{
+    ViewBag.Title = "bmrf.me | " + @Html.Raw(Model.Title);
+    ViewBag.Author = @Model.Author;
+}
+
+<div class="ink-grid">   
+          
+    <!-- featured content -->
+    <div class="column-group featured clearfix">
+        <div class="all-5 medium-100 small-100 tiny-100">
+        </div>
+        <div class="all-70 medium-100 small-100 tiny-100">
+            <article>
+
+            </article>
+        </div>
+        <div class="all-25 medium-100 small-100 tiny-100 clearfix double-top-space bottom-space">
+            <div class="widget-container author-widget">
+            </div>
+
+            <div class="widget-container social-widget top-space">
+                <h4>share this</h4>
+                <div class="half-top-space">
+                    <a href="" target="_blank" class="facebook-share-button share-icon"><i class="fa fa-facebook fa-1x"></i></a>
+                    <a href="" target="_blank" class="twitter-share-button share-icon"><i class="fa fa-twitter fa-1x"></i></a>
+                    <a href="" target="_blank" class="google-share-button share-icon"><i class="fa fa-google-plus fa-1x"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- disqus -->
+            <div id="disqus_thread" class="all-70 medium-100 small-100 tiny-100 bottom-space" style="opacity:0.8;padding-left:5%;"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'bmrf'; // required: replace example with your forum shortname
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            <!-- disqus -->
+    </div>
+    <!-- end featured -->
+
+    <div class="column-group featured clearfix half-top-space">
+        <div class="all-100 medium-100 small-100">
+            <div id="recent_posts" class="ink-carousel" data-space-after-last-slide="false">
+                <ul class="stage column-group">
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <nav id="p1" class="ink-navigation quarter-top-space half-bottom-space">
+        <ul class="pagination black"></ul>
+    </nav>
+
+            <!-- post loading script -->   
+            <script>
+
+            $(document).ready(function() {
+                var hostdomain = window.location.protocol + '//' + window.location.host;
+
+                $.getJSON(hostdomain + '/api/get_post?post_slug=@Model.Slug', function (data) {
+                      
+                    $('article').append(
+                    '<p class="article-info"><span>' + data.post.categories[0].title + '</span> Published at ' + data.post.date + '</p>',
+                    '<h2>' + data.post.title + '</h2>',
+                    '<img src=\"' + data.post.thumbnail_images.full.url + '\" alt="article title"/>',
+                    data.post.content
+                    );
+
+                    $('.author-widget').append(
+                    '<h4>' + data.post.author.name + '</h4>',
+                    '<p><em>' + data.post.author.description + '</em></p>'
+                    );
+
+                    var pathname = window.location.protocol + '//' + window.location.host + window.location.pathname;
+
+                    $('.twitter-share-button').attr('href','https://twitter.com/share?url=' + pathname + '&text=' + data.post.title + '&via=BMRFservers');
+                    $('.facebook-share-button').attr('href','https://www.facebook.com/sharer.php?u=' + pathname + '&t=' + data.post.title + '');
+                    $('.google-share-button').attr('href','https://plus.google.com/share?url=' + pathname + '');
+
+                }).fail(function() {
+                    $('article').append('<h2>We\'re sorry but the page got quickscoped</h2>');
+                });
+
+                $.getJSON(hostdomain + '/api/get_recent_posts?count=7', function (data) {
+                    for (var i in data.posts) {
+                        $('.stage').append('<li class=\"slide xlarge-25 large-33 medium-33 small-50 tiny-100\" onclick=\"window.location = \'' + hostdomain + '/article/' + data.posts[i].slug + '/\'\"><img class=\"half-bottom-space\" src=\"' + data.posts[i].thumbnail + '\"><h4 class=\"no-margin\">' + data.posts[i].title + '</h4><p>published <span>' + data.posts[i].date + '</span> in <span>' + data.posts[i].categories[0].title + '</span></p></div></li>');
+
+                    }
+                      
+                }).done(function() {
+                    Ink.requireModules(['Ink.UI.Carousel_1'], function(InkCarousel) {
+                        new InkCarousel('#recent_posts', {pagination: '#p1'});
+                    });
+                }).fail(function() {
+                    $('article').append('<h4>The recent articles are having a fistfight and can\'t be retrieved.</h4>');
+                });
+            });
+            </script>       
+</div>

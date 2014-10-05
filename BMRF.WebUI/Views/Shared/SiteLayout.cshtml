@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>@ViewBag.Title</title>
+        @Html.Partial("_HomeHeaderPartial")
+    </head>
+        <body>
+            <div id="nav">
+                @{ Html.RenderAction("NavBarPartial", "Home"); }
+            </div>
+            <div class="ink-grid">
+                <!--[if lte IE 9 ]>
+                    <div class="ink-alert basic" role="alert">
+                        <button class="ink-dismiss">&times;</button>
+                        <p>
+                            <strong>You are using an outdated Internet Explorer version.</strong>
+                            Please <a href="http://browsehappy.com/">upgrade to a modern browser</a> to improve your web experience.
+                        </p>
+                    </div>
+                <![endif]-->
+                <!-- Add your site or application content here -->
+                <div class="column-group half-top-space">
+                    <div class="all-25">
+                        <h1><img src="@Url.Content("~/Content/img/mini_logo.png")" alt="logo" /></h1>
+                    </div>
+                    @*<div class="all-70 medium-100 small-100 tiny-100">
+                        <div style="width:82%;border-radius:7px;margin:0 0%;height:50%;background:rgba(194,0,0,0.5);border:1px solid #c20000;position:relative;top:17px;">
+                            <p style="color:#fff;padding:5%;padding-top:1%;padding-bottom:0;font-size: 87%;">Overpoch is live! The server is available at IP 192.95.29.100 on port 2502.</p>
+                    </div>
+                    </div>*@
+                </div>
+            </div>
+            @RenderBody()
+        </body>
+    @Html.Partial("_HomeFooterPartial")
+</html>
+

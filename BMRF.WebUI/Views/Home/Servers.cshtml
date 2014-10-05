@@ -1,0 +1,98 @@
+﻿@using BMRF.Domain.HomepageModels
+@model List<BMRF.Domain.HomepageModels.QuickServerStat>
+
+@{
+    ViewBag.Title = "bmrf.me | servers";
+
+    QuickServerStat overpoch = null;
+    QuickServerStat dayzero = null;
+    QuickServerStat epoch = null;
+    
+    if (Model != null)
+    {
+        overpoch = Model.FirstOrDefault(server => server.FriendlyName == "Overpoch");
+        dayzero = Model.FirstOrDefault(server => server.FriendlyName == "DayZero");
+        epoch = Model.FirstOrDefault(server => server.FriendlyName == "A3 Epoch");
+    }
+}
+
+<div class="ink-grid  bottom-space">   
+          
+    <div class="column-group clearfix server-tracker-wrapper">
+        
+        @if (dayzero != null)
+        {
+            <!-- server tracker block -->
+            <div class="all-50">
+                <div class="column-group clearfix featured server-tracker" style="background: url('@Url.Content("~/Content/img/bg-dayzero.jpg")');">
+                    <div class="all-60">
+                        <h3>@dayzero.PlayerCount/@dayzero.MaxPlayers</h3>
+                    </div>
+                    <div class="all-40">
+                        <img src="@Url.Content("~/Content/img/dayzero.png")" style="width: 200px; float: right; margin-right: 1em; margin-top: 0.5em;">
+                    </div>
+                    <div class="all-60">
+                        <p><span>hostname</span> bmrf.me</p>
+                        <p><span>port</span> @(dayzero.Port + 1)</p>
+                        <p><span>map</span> @dayzero.Map</p>
+                    </div>
+                    <div class="all-40">
+                    </div>
+                    <div class="all-100 launch-btn quarter-top-space clearfix">
+                        <a href="steam://run/33930//-mod=&#64;DayZero;&#64;DayZeroChernarus%20-connect=@dayzero.IP%20-port=@(dayzero.Port + 1)">launch <i class="fa fa-steam fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+        
+        @if (overpoch != null)
+        {
+            <!-- server tracker block -->
+            <div class="all-50">
+                <div class="column-group clearfix featured server-tracker" style="background: url('@Url.Content("~/Content/img/bg-overpoch.jpg")');">
+                    <div class="all-60">
+                        <h3>@overpoch.PlayerCount/@overpoch.MaxPlayers</h3>
+                    </div>
+                    <div class="all-40">
+                        <img src="@Url.Content("~/Content/img/overpoch.png")" style="width: 200px; float: right; margin-right: 1em; margin-top: 0.5em;">
+                    </div>
+                    <div class="all-60">
+                        <p><span>hostname</span> bmrf.me</p>
+                        <p><span>port</span> @(overpoch.Port + 1)</p>
+                        <p><span>map</span> @overpoch.Map</p>
+                    </div>
+                    <div class="all-40">
+                    </div>
+                    <div class="all-100 launch-btn quarter-top-space clearfix">
+                        <a href="steam://run/33930//-mod=&#64;DayzOverwatch;&#64;DayZ_Epoch%20-connect=@overpoch.IP%20-port=@(overpoch.Port + 1)">launch <i class="fa fa-steam fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+        
+        @if (epoch != null)
+        {
+            <!-- server tracker block -->
+            <div class="all-50">
+                <div class="column-group clearfix featured server-tracker" style="background: url('@Url.Content("~/Content/img/bg-epoch.jpg")g');">
+                    <div class="all-60">
+                        <h3>@epoch.PlayerCount/@epoch.MaxPlayers</h3>
+                    </div>
+                    <div class="all-40">
+                        <img src="@Url.Content("~/Content/img/epoch.png")" style="width: 200px; float: right; margin-right: 1em; margin-top: 0.5em;">
+                    </div>
+                    <div class="all-60">
+                        <p><span>hostname</span> blueberry.bmrf.me</p>
+                        <p><span>port</span> @(epoch.Port + 1)</p>
+                        <p><span>map</span> @epoch.Map</p>
+                    </div>
+                    <div class="all-40">
+                    </div>
+                    <div class="all-100 launch-btn quarter-top-space clearfix">
+                        <a href="steam://run/107410//-mod=&#64;Epoch%20-connect=@epoch.IP%20-port=@(epoch.Port + 1)">launch <i class="fa fa-steam fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>   
+</div>

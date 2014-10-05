@@ -1,0 +1,113 @@
+﻿@model BMRF.Domain.HomepageModels.HomepageModel
+@{
+    ViewBag.Title = "bmrf.me | home";
+    ViewBag.Author = "Jamie Roling, Corey Chase";}
+
+<div class="ink-grid">
+    <!-- featured content + stat tracker -->
+    <div class="column-group featured clearfix">
+        <div class="all-75 medium-50 small-100">
+            <div class="column-group clearfix">
+                @foreach (var article in Model.Articles)
+                {
+                    <div class="@article.Class" style="background-image:url('@article.ImageUrl');" >
+                        <div class="thumb-bg">
+                            <h3><a href="https://bmrf.me/article/@article.Slug">@Html.Raw(@article.Title)<br /><span>@article.Category</span></a></h3>
+                        </div>
+                    </div>
+                }
+            </div>  
+        </div>
+        <div class="all-25 medium-50 small-100 clearfix">
+            <div class="register-button widget-container">
+                <a href="https://community.bmrf.me/register.php">WHITELIST</a>
+            </div>
+            <div class="widget-container" style="width:275px;margin:0 auto;">
+                @{
+                    int divId = 1;  
+                    foreach (var s in Model.QuickServerStats.OrderByDescending(s => s.PlayerCount))
+                    {
+                        if (divId >= 3) { continue; }
+                        <div id="myStathalf@(divId++)" data-dimension="135" data-text="@(s.Offline ? "offline" : s.PlayerCount.ToString())" data-info="@s.FriendlyName" data-width="30" data-fontsize="25" data-bordersize="7" data-total="@s.MaxPlayers" data-part="@s.PlayerCount" data-fgcolor="#FFBA2B" data-bgcolor="rgba(0,0,0,0.35)" data-type="full" data-fill="rgba(0,0,0,0.20)" style="display: inline-block;"></div>
+                    }
+                }
+            </div>
+            
+            @if (Model.TotalStats != null)
+            {
+                <div class="widget-container total-stats">
+                    <p>@Model.TotalStats.HoursPlayed hours</p>
+                    <span>total playtime</span>
+                    <p>@Model.TotalStats.AvgSurvivalTime minutes</p>
+                    <span>average survival time</span>
+                </div>
+            }
+            else
+            {
+                <div class="widget-container total-stats">
+                    <p>0 hours</p>
+                    <span>total playtime</span>
+                    <p>0 minutes</p>
+                    <span>average survival time</span>
+                </div>
+            }
+
+        </div>
+    </div>
+    <!-- end featured -->
+    <div class="column-group featured clearfix half-top-space">
+        <div class="all-100 medium-100 small-100 tiny-100">
+            <div id="car1" class="ink-carousel" data-space-after-last-slide="false">
+                <ul class="stage column-group">
+                    @foreach (var stream in Model.FeaturedStreams)
+                    {
+                        <li class="slide xlarge-25 large-33 medium-50 small-100 tiny-100" onclick="window.location = '@stream.StreamUrl'">
+                            <img class="half-bottom-space" src="@stream.PreviewImage">
+                            <div class="description">
+                                <h4 class="no-margin">@stream.StreamTitle</h4>
+                                <p>@stream.StreamerName playing <span>@stream.Game</span> @@ <span>@stream.Viewers viewers</span></p>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <!-- <div class="all-25 medium-50 small-100 clearfix">
+        </div> -->
+        
+    </div>
+    <nav id="p1" class="ink-navigation quarter-top-space">
+        <ul class="pagination black"></ul>
+    </nav>
+
+    <!-- featured content + stat tracker -->
+    <div class="column-group featured clearfix half-top-space bottom-space">
+        @{
+            int playerNum = 9;
+            foreach (var player in Model.QuickPlayerStats)
+            {
+                <div class="all-25 medium-50 small-100 clearfix player-rank">
+                    <div class="column-group clearfix player-rank-header quarter-bottom-space">
+                        <div class="all-30 clearfix">
+                            <img src="@Url.Action("RenderForumAvatar", "Home", new { vuid = @player.VUID })" alt="profile name" class="player-rank-avatar" />
+                        </div>
+                        <div class="all-45 clearfix">
+                            <a href="https://bmrf.me/profile/@player.ForumUsername"><h5>@player.ForumUsername</h5></a>
+                            <h4>All Servers</h4>
+                        </div>
+                        <div class="all-25 clearfix">
+                            <img src="@Url.Content("~/Content/img/badges/Rank_Icon_" + @playerNum-- + ".png")" class="player-rank-badge" />
+                        </div>
+                        <div class="all-100 medium-100 small-100 clearfix">
+                            <h6>player kills <span>@(player.KillsB + player.KillsH)</span></h6>
+                            <h6>time played <span>@(player.Playtime / 60) hours</span></h6>
+                            <h6>score <span>@player.Score</span></h6>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <!-- end featured -->
+</div>
