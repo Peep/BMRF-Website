@@ -145,7 +145,10 @@
     <Content Include="Content\img\bg-dayzero.jpg" />
     <Content Include="Content\img\bg-epoch.jpg" />
     <Content Include="Content\img\bg-overpoch.jpg" />
+    <Content Include="Content\img\bg-rust.jpg" />
+    <Content Include="Content\img\bg-rust2.png" />
     <Content Include="Content\img\dayzero.png" />
+    <Content Include="Content\img\epoch.png" />
     <Content Include="Content\img\error.png" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\featured-bg.jpg" />
@@ -849,6 +852,7 @@
     <Content Include="Content\img\poop_test2.jpg" />
     <Content Include="Content\img\pp-subscribe.jpg" />
     <Content Include="Content\img\ranking-bg.jpg" />
+    <Content Include="Content\img\rust.png" />
     <Content Include="Content\img\SAPOlogo.png" />
     <Content Include="Content\img\shakingcat.gif" />
     <Content Include="Content\img\splash.1024x748.png" />
