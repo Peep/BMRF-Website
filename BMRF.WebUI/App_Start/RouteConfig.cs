@@ -43,12 +43,6 @@ namespace BMRF.WebUI
                 );
 
             routes.MapRoute(
-                name: "Store",
-                url: "store",
-                defaults: new { controller = "Home", action = "Store" }
-                );
-
-            routes.MapRoute(
                 name: "Rules",
                 url: "rules",
                 defaults: new { controller = "Home", action = "Rules" }

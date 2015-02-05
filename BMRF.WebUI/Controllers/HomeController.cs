@@ -67,11 +67,6 @@ namespace BMRF.WebUI.Controllers
             return View(servers);
         }
 
-        public ActionResult Store()
-        {
-            return View();
-        }
-
         public PartialViewResult NavBarPartial()
         {
             int userId = 0;

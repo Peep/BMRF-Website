@@ -24,10 +24,10 @@ namespace BMRF.Domain.HomepageModels
         public void GetServer(string ip, int port, string friendlyName)
         {
             FriendlyName = friendlyName;
-            var ssql = new SSQL();
+            var ssql = new SSQL(new IPEndPoint(IPAddress.Parse(ip), port));
             try
             {
-                var info = ssql.Server(new IPEndPoint(IPAddress.Parse(ip), port));
+                var info = ssql.Server();
                 PlayerCount = Convert.ToInt32(info.PlayerCount);
                 MaxPlayers = Convert.ToInt32(info.MaxPlayers);
                 ServerName = info.Name;
