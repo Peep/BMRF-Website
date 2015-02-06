@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using BMRF.Domain.Abstract;
 using BMRF.Domain.DataModels;
 using BMRF.Domain.Entities;
 

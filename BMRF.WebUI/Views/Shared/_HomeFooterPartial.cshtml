@@ -15,16 +15,16 @@
                 </ul>
             </div>
 
-            <div class="all-20">
-                <ul class="unstyled half-vertical-space">
-                    <li class="active">popular</li>
-                    <li><a href="https://community.bmrf.me">community</a></li>
-                    <li>@Html.ActionLink("articles", "Articles", "Home")</li>
-                    <li>@Html.ActionLink("store", "Store", "Home")</li>
-                    <li>@Html.ActionLink("rules", "Rules", "Home")</li>
-                    <li>@Html.ActionLink("players", "Players", "Home")</li>
-                </ul>
-            </div>
+            @*<div class="all-20">
+                    <ul class="unstyled half-vertical-space">
+                        <li class="active">popular</li>
+                        <li><a href="https://community.bmrf.me">community</a></li>
+                        <li>@Html.ActionLink("articles", "Articles", "Home")</li>
+                        <li>@Html.ActionLink("donate", "Index", "Donate")</li>
+                        <li>@Html.ActionLink("rules", "Rules", "Home")</li>
+                        <li>@Html.ActionLink("players", "Players", "Home")</li>
+                    </ul>
+                </div>*@
 
             <div class="all-20">
                 <ul class="unstyled half-vertical-space">
@@ -36,15 +36,15 @@
                 </ul>
             </div>
 
-            <div class="all-20">
-                <ul class="unstyled half-vertical-space">
-                    <li class="active">contribute</li>
-                    <li><a href="mailto:jamieroling@bmrf.me">write for us</a></li>
-                    <li><a href="mailto:admin@bmrf.me">report security hole</a></li>
-                    <li><a href="mailto:jamieroling@bmrf.me">send us a tip</a></li>
-                    <li><a href="mailto:admin@bmrf.me">ask a question</a></li>
-                </ul>
-            </div>
+            @*<div class="all-20">
+                    <ul class="unstyled half-vertical-space">
+                        <li class="active">contribute</li>
+                        <li><a href="mailto:jamieroling@bmrf.me">write for us</a></li>
+                        <li><a href="mailto:admin@bmrf.me">report security hole</a></li>
+                        <li><a href="mailto:jamieroling@bmrf.me">send us a tip</a></li>
+                        <li><a href="mailto:admin@bmrf.me">ask a question</a></li>
+                    </ul>
+                </div>*@
 
         </div>
         <p class="note">© 2014 BMRF All rights reserved.</p>
@@ -58,7 +58,7 @@
         new Sticky('.my-sticky')
     });
 </script>
-<script src="@Url.Content("~/Content/js/jquery.circliful.min.js")"></script>
+<script src="https://content.bmrf.me/siteassets/js/jquery.circliful.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#myStathalf1').circliful();
@@ -69,7 +69,7 @@
 </script>
 <script>
     $(document).ready(function () {
-    
+
         $('[title]').qtip({
             style: {
                 classes: 'qtip-tipsy qtip-rounded qtip-shadow'
@@ -79,7 +79,7 @@
                 at: 'bottom center'
             }
         });
-        
+
         $('.toggle-btn').click(function () {
             var toggleType = $(this).data('toggle');
 

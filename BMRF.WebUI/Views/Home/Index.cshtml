@@ -97,7 +97,7 @@
                             <h4>All Servers</h4>
                         </div>
                         <div class="all-25 clearfix">
-                            <img src="@Url.Content("~/Content/img/badges/Rank_Icon_" + @playerNum-- + ".png")" class="player-rank-badge" />
+                            <img src="@String.Format("https://content.bmrf.me/siteassets/img/badges/Rank_Icon_{0}{1}", @playerNum--, ".png")" class="player-rank-badge" />
                         </div>
                         <div class="all-100 medium-100 small-100 clearfix">
                             <h6>player kills <span>@(player.KillsB + player.KillsH)</span></h6>

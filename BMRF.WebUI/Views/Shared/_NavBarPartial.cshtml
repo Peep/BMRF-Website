@@ -16,12 +16,12 @@
                     <label for="navbar_password" style="display:inline-block;width:40%;">password </label><a href="https://community.bmrf.me/login.php?do=lostpw" style="display:inline-block;width:60%;font-size:70%;text-align:right;">forgot password?</a>
                     <input type="password" class="textbox" tabindex="102" name="vb_login_password" id="navbar_password" size="10" />
                     <input type="text" class="textbox default-value" tabindex="102" name="vb_login_password_hint" id="navbar_password_hint" size="10" placeholder="password" style="display:none;" />
-                    
+
 
                     <label for="cb_cookieuser_navbar"><input type="checkbox" name="cookieuser" value="1" id="cb_cookieuser_navbar" class="cb_cookieuser_navbar" accesskey="c" tabindex="103" /> remember me</label>
 
-                    <input type="submit" class="loginbutton" tabindex="104" value="Log in" title="Enter your username and password in the boxes provided to login, or click the 'register' button to create a profile for yourself." accesskey="s" style="display:block;"/>
-     
+                    <input type="submit" class="loginbutton" tabindex="104" value="Log in" title="Enter your username and password in the boxes provided to login, or click the 'register' button to create a profile for yourself." accesskey="s" style="display:block;" />
+
                     <input type="hidden" name="s" value="" />
                     <input type="hidden" name="securitytoken" value="guest" />
                     <input type="hidden" name="do" value="login" />
@@ -64,7 +64,12 @@
                 }
                 else
                 {
-                    <span class="player-tab" style="text-align:right;display:block;font-size:0.85em;position:relative;top:11px;color:#FFBA2B!important;"><span style="color:#ccc;">welcome,</span> <a href="https://community.bmrf.me/member.php?@Model.UserId">@Model.Name</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://community.bmrf.me/usercp.php">settings</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://bmrf.me/home/logout">log out</a></span>
+                    <span class="player-tab" style="text-align: right; display: block; font-size: 0.85em; position: relative; top: 11px; color: #FFBA2B !important;">
+                        <span style="color: #ccc;">welcome,</span>
+                        <a href="https://community.bmrf.me/member.php?@Model.UserId">@Model.Name</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://community.bmrf.me/usercp.php">settings</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://bmrf.me/home/logout">log out</a>
+                    </span>
                 }
             </div>
         </div>

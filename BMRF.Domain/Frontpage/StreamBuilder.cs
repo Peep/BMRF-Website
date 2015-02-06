@@ -44,7 +44,7 @@ namespace BMRF.Domain.Frontpage
         private void GetFiller()
         {
             var wc = new WebClient();
-            var csgo = wc.DownloadString("https://api.twitch.tv/kraken/streams?game=Counter-Strike:+Global+Offensive");
+            // var csgo = wc.DownloadString("https://api.twitch.tv/kraken/streams?game=Counter-Strike:+Global+Offensive");
             var dayz = wc.DownloadString("https://api.twitch.tv/kraken/streams?game=DayZ");
             var a2 = wc.DownloadString("https://api.twitch.tv/kraken/streams?game=Arma+2:+Operation+Arrowhead");
             var a3 = wc.DownloadString("https://api.twitch.tv/kraken/streams?game=Arma+III");
@@ -52,7 +52,7 @@ namespace BMRF.Domain.Frontpage
             ParseAndAdd(a2, 2);
             ParseAndAdd(dayz, 2);
             ParseAndAdd(a3, 2);
-            ParseAndAdd(csgo, 2);
+            //ParseAndAdd(csgo, 2);
         }
 
         private void ParseAndAdd(string rawjson, int priority)

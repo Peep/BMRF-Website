@@ -24,13 +24,14 @@
 
     <div class=" clearfix player-profile featured double-bottom-space top-space">
 
-        <div class="column-group" style="background:url('@Url.Content("~/Content/img/player-profile-bg.jpg")');border-bottom:1px solid #000;">
+        <div class="column-group" style="background:url('https://content.bmrf.me/siteassets/img/player-profile-bg.jpg');border-bottom:1px solid #000;">
             <div class="all-50">
                 <img class="player-rank-avatar" src="https://bmrf.me/home/renderforumavatar?vuid=@Model.Player.VUID"/>
                 <h2 class="player-profile-info">@Model.Player.ForumUsername<br /><span>@Model.Player.Name</span></h2>
             </div>
             <div class="all-50">
-                <img src="@Url.Content("~/Content/img/" + (Model.LastCharacter.Server == "dayzero" ? "dayzero.png" : "overpoch.png"))" style="width:250px;float:right;margin-right:1em;margin-top:0.5em;"/>
+                <img src="@("https://content.bmrf.me/siteassets/img/" + (Model.LastCharacter.Server == "dayzero" ? "dayzero.png" : "overpoch.png"))" 
+                     style="width:250px;float:right;margin-right:1em;margin-top:0.5em;" />
             </div>
             <div class="all-10">
             </div>
@@ -48,7 +49,8 @@
                             <div class="all-100">
                                 <div class="player-equipped-box clearfix" style="">
                                     <div class="player-inventory player-inventory" style="display: inline-block;">
-                                        <img src="@Url.Content("~/Content/img/item-icons/" + optic.ImageName)" alt="rank 1" />
+                                        <img src="@("https://content.bmrf.me/siteassets/img/item-icons/" + optic.ImageName)" alt="rank 1" />
+                                        <img src="@("https://content.bmrf.me/siteassets/img/item-icons/" + optic.ImageName)" alt="rank 1"/>
                                     </div>
                                 </div>
                             </div>
@@ -59,14 +61,14 @@
                         <div class="all-100">
                             <div class="player-equipped-box clearfix" style="">
                                 <div class="player-inventory player-inventory" style="display: inline-block;">
-                                    <img src="@Url.Content("~/Content/img/item-icons/empty.png")" alt="rank 1" />
+                                    <img src="https://content.bmrf.me/siteassets/img/item-icons/empty.png" alt="rank 1" />
                                 </div>
                             </div>
                         </div>
                         <div class="all-100">
                             <div class="player-equipped-box clearfix" style="">
                                 <div class="player-inventory player-inventory" style="display: inline-block;">
-                                    <img src="@Url.Content("~/Content/img/item-icons/empty.png")" alt="rank 1" />
+                                    <img src="https://content.bmrf.me/siteassets/img/item-icons/empty.png" alt="rank 1" />
                                 </div>
                             </div>
                         </div>
@@ -77,7 +79,7 @@
                         <div class="all-100">
                             <div class="player-equipped-box clearfix" style="">
                                 <div class="player-inventory player-inventory" style="display: inline-block;">
-                                    <img src="@Url.Content("~/Content/img/item-icons/" + @Model.LastCharacter.Inventory.Backpack.ImageName)" alt="rank 1" />
+                                    <img src="@("https://content.bmrf.me/siteassets/img/item-icons/" + @Model.LastCharacter.Inventory.Backpack.ImageName)" alt="rank 1" />
                                 </div>
                             </div>
                         </div>
@@ -87,7 +89,7 @@
                         <div class="all-100">
                             <div class="player-equipped-box clearfix" style="">
                                 <div class="player-inventory player-inventory" style="display: inline-block;">
-                                    <img src="@Url.Content("~/Content/img/item-icons/unknown.png")" alt="rank 1" />
+                                    <img src="https://content.bmrf.me/siteassets/img/item-icons/unknown.png" alt="rank 1" />
                                 </div>
                             </div>
                         </div>
@@ -100,7 +102,7 @@
             <!-- portrait column -->
             <div class="all-30">
                 <h3></h3>
-                <img src="@Url.Content("~/Content/img/player-avatars/dude-filler3.png")" class="" />
+                <img src="https://content.bmrf.me/siteassets/img/player-avatars/dude-filler3.png" class="" />
             </div>
             <!-- portrait column end -->
         
@@ -115,7 +117,7 @@
                             <div class="player-item">
                                 <div class="column-group quarter-gutters">
                                     <div class="all-30">
-                                        <img src="@Url.Content("~/Content/img/item-icons/" + @Model.LastCharacter.Inventory.PrimaryWeapon.ImageName)" style="width: 90%; margin: 0 5%;margin-top:15px;" />
+                                        <img src="@("https://content.bmrf.me/siteassets/img/item-icons/" + Model.LastCharacter.Inventory.PrimaryWeapon.ImageName)" style="width: 90%; margin: 0 5%;margin-top:15px;" />
                                     </div>
                                     <div class="all-70">
                                         <h5>@Model.LastCharacter.Inventory.PrimaryWeapon.Name<span> @Model.LastCharacter.Inventory.PrimaryWeapon.Subtitle</span></h5>
@@ -131,7 +133,7 @@
                             <div class="player-item">
                                 <div class="column-group quarter-gutters">
                                     <div class="all-30">
-                                        <img src="@Url.Content("~/Content/img/item-icons/unknown.png")" style="width: 90%; margin: 0 5%;" />
+                                        <img src="https://content.bmrf.me/siteassets/img/item-icons/unknown.png" style="width: 90%; margin: 0 5%;" />
                                     </div>
                                     <div class="all-70">
                                         <h5>Primary Weapon Not Found<span> </span></h5>
@@ -148,7 +150,7 @@
                             <div class="player-item">
                                 <div class="column-group quarter-gutters">
                                     <div class="all-30">
-                                        <img src="@Url.Content("~/Content/img/item-icons/" + @Model.LastCharacter.Inventory.SecondaryWeapon.ImageName)" style="width: 90%; margin: 0 5%;" />
+                                        <img src="@("https://content.bmrf.me/siteassets/img/item-icons/" + @Model.LastCharacter.Inventory.SecondaryWeapon.ImageName)" style="width: 90%; margin: 0 5%;" />
                                     </div>
                                     
                                     <div class="all-70">
@@ -165,7 +167,7 @@
                             <div class="player-item">
                                 <div class="column-group quarter-gutters">
                                     <div class="all-30">
-                                        <img src="@Url.Content("~/Content/img/item-icons/unknown.png")" style="width: 90%; margin: 0 5%;" />
+                                        <img src="https://content.bmrf.me/siteassets/img/item-icons/unknown.png" style="width: 90%; margin: 0 5%;" />
                                     </div>
                                     <div class="all-70">
                                         <h5>Secondary Weapon Not Found <span> </span></h5>

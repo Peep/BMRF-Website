@@ -76,7 +76,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IForumRequestData.cs" />
     <Compile Include="DataModels\ItemsDataModel.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\Player.cs" />
@@ -104,7 +103,7 @@
     <Compile Include="Entities\WhitelistData.cs" />
     <Compile Include="DataModels\WhitelistDataModel.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
-    <Compile Include="Inventory.cs" />
+    <Compile Include="ProfileModels\Inventory.cs" />
     <Compile Include="Login\DefaultForumRequest.cs" />
     <Compile Include="Login\ForumUser.cs" />
     <Compile Include="Login\ForumUserSession.cs" />
@@ -118,19 +117,12 @@
     <Compile Include="Frontpage\QuickStatsBuilder.cs" />
     <Compile Include="Frontpage\StreamBuilder.cs" />
     <Compile Include="Util.cs" />
-    <Compile Include="ViewModels\AdminPlayerViewModel.cs" />
-    <Compile Include="ViewModels\NavBarLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\PagedList.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Store\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
