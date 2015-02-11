@@ -12,6 +12,8 @@ namespace BMRF.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        public static ForumUser ForumUser;
+
         public ActionResult Index()
         {
             var model = new HomepageModel();
@@ -92,9 +94,9 @@ namespace BMRF.WebUI.Controllers
             };
 
             var forumSession = new ForumUserSession(forumRequest);
-            var forumUser = forumSession.BuildUser();
+            ForumUser = forumSession.BuildUser();
 
-            return PartialView("_NavBarPartial", forumUser);
+            return PartialView("_NavBarPartial", ForumUser);
         }
 
         public ActionResult Logout()

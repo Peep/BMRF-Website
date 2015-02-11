@@ -1,7 +1,11 @@
-﻿
+﻿@model BMRF.Domain.DonateModels.Donation
+
 @{
     ViewBag.Title = "DayZ";
 }
 
-<h2>DayZ</h2>
+@using (Html.BeginForm("Submit", "Donate"))
+{
+    @Html.TextBoxFor(m => Model.Amount);
+}
 
